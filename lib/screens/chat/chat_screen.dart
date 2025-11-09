@@ -8,7 +8,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ChatScreen extends StatefulWidget {
   final String chatId;
   final String otherUid;
-  const ChatScreen({super.key, required this.chatId, required this.otherUid});
+  final String otherUserEmail;
+
+  const ChatScreen({
+    super.key,
+    required this.chatId,
+    required this.otherUid,
+    required this.otherUserEmail,
+  });
+
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -32,7 +40,12 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Icon(Icons.person, size: 18, color: Colors.white),
             ),
             const SizedBox(width: 12),
-            const Text('Chat Partner'),
+            Flexible(
+              child: Text(
+                widget.otherUserEmail,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
         actions: [
