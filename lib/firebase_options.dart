@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyA9b2GdZWeBknWrzJ06gaOpd4Ga11ZbXC8',
     appId: '1:965193620047:web:02d140dd831136180ee83a',
     messagingSenderId: '965193620047',
-    projectId: 'bookswap-db3fd',
+    projectId: 'bookswap-db3fd2',
     authDomain: 'bookswap-db3fd.firebaseapp.com',
     storageBucket: 'bookswap-db3fd.firebasestorage.app',
     measurementId: 'G-H2DWCJSHNW',
@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBsE832AH1qzv1W-A7zcdMSrgaP8tEhx5A',
     appId: '1:345650039823:android:5edfd37facadb02749677a',
     messagingSenderId: '345650039823',
-    projectId: 'book-swap-e6432',
+    projectId: 'book-swap-e64322',
     storageBucket: 'book-swap-e6432.firebasestorage.app',
   );
 
@@ -68,9 +68,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyCpx-7uqaPlmN1lJDuw0mV1FgCwacDwA1g',
     appId: '1:345650039823:ios:039579204055bd3c49677a',
     messagingSenderId: '345650039823',
-    projectId: 'book-swap-e6432',
+    projectId: 'book-swap-e64322',
     storageBucket: 'book-swap-e6432.firebasestorage.app',
     iosBundleId: 'com.example.bookswap',
   );
-
 }

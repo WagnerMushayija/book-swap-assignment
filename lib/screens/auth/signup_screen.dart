@@ -27,7 +27,7 @@ class _SignupScreenState extends State<SignupScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please fill all fields'),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.red,
         ),
       );
       return;
@@ -37,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Passwords do not match'),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.red,
         ),
       );
       return;
@@ -53,7 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              'Account created! Please check your email to verify your account.',
+              'Account created! Check your email to get verified.',
             ),
             backgroundColor: Colors.green,
             duration: Duration(seconds: 4),
@@ -65,7 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(e.toString()),
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.red,
           ),
         );
       }
@@ -84,13 +84,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F5F1), // Off-white background
-      appBar: AppBar(
-        title: const Text('Create Account'),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black87,
-        elevation: 0,
-      ),
+      // The AppBar now uses the theme from main.dart
+      appBar: AppBar(title: const Text('Start Your Story')),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -98,27 +93,13 @@ class _SignupScreenState extends State<SignupScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Start a New Chapter',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1D2A4D),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Create an account to begin swapping.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.black54),
-              ),
-              const SizedBox(height: 40),
+              // No need for a separate title, the AppBar has it.
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.alternate_email),
-                  labelText: 'Email Address',
+                  prefixIcon: Icon(Icons.email_outlined),
+                  labelText: 'Email',
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
@@ -127,7 +108,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 controller: _passwordController,
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock_outline_rounded),
+                  prefixIcon: const Icon(Icons.lock_outline),
                   labelText: 'Password',
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -145,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 controller: _confirmPasswordController,
                 obscureText: _obscureConfirmPassword,
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock_outline_rounded),
+                  prefixIcon: const Icon(Icons.lock_outline),
                   labelText: 'Confirm Password',
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -154,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           : Icons.visibility_outlined,
                     ),
                     onPressed: () => setState(
-                      () => _obscureConfirmPassword = !_obscureConfirmPassword,
+                          () => _obscureConfirmPassword = !_obscureConfirmPassword,
                     ),
                   ),
                 ),
@@ -162,31 +143,18 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 32),
               SizedBox(
                 height: 50,
+                // ElevatedButton now uses the theme from main.dart
                 child: ElevatedButton(
                   onPressed: _loading ? null : _signup,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF3A5A98),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  child: _loading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text(
+                    'Create My Account',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
-                  child: _loading
-                      ? const SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 3,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text(
-                          'Create Account',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -194,16 +162,17 @@ class _SignupScreenState extends State<SignupScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Already have an account?",
+                    "Already a member?",
                     style: TextStyle(color: Colors.black54),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text(
+                    child: Text(
                       'Sign In',
                       style: TextStyle(
-                        color: Color(0xFF3A5A98),
                         fontWeight: FontWeight.bold,
+                        // This now correctly pulls the primary color (pink) from the theme
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
